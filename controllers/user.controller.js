@@ -86,12 +86,11 @@ exports.getLocaton = asyncHandler(async (req, res) => {
     // open as
     const responce = await fetch(`https://api.opencagedata.com/geocode/v1/json?key=${process.env.OPEN_CAGE_API_KEY}=${gps.latitude}+${gps.longitude}&pretty=1&no_annotations=1`)
     const x = await responce.json()
+    console.log(x);
 
-
-    res.json({ message: "Location fetch success", result: x.results[0].for })
+    res.json({ message: "Location fetch success", result: x.results[0].formatted })
 })
 
-exports.getLocaton
 
 
 
