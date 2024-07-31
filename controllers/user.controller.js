@@ -88,7 +88,7 @@ exports.getLocaton = asyncHandler(async (req, res) => {
     const x = await responce.json()
 
 
-    res.json({ message: "Location fetch success", result: x.results[0].formatted })
+    res.json({ message: "Location fetch success", result: x.results[0].for })
 })
 
 exports.getLocaton
