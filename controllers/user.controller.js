@@ -81,12 +81,19 @@ exports.VerifyUserMobile = asyncHandler(async (req, res) => {
 
 
 exports.addPost = asyncHandler(async (req, res) => {
-    const { title, desc, price, images, location, category } = req.body
+    const { title, desc, price, images, location, category, gps } = req.body
     const { error, isError } = checkEmpty({ title, desc, price, images, location, category })
     if (isError) {
         return res.status(400).json({ message: "All Fields Required" })
     }
+    if (gps) {
+        // open as
+        const responce = await fetch(`https://api.opencagedata.com/geocode/v1/json?key=${process.env.OPEN_CAGE_API_KEY}=${location.latitude}+${location.longitude}&pretty=1&no_annotations=1`)
+        const x = await responce.json()
+        console.log(x);
+    }
 
-    await Posts.create({ title, desc, price, images, location, user: req.loggedInUser, category })
+
+    // await Posts.create({ title, desc, price, images, location, user: req.loggedInUser, category })
     res.json({ message: "Post Create Successs" })
 })
