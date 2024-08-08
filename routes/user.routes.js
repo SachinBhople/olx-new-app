@@ -11,5 +11,6 @@ router
     .post("/verify-user-mobile-otp", userProtected, userController.VerifyMobileOTP)
     .post("/get-location", userProtected, userController.getLocaton)
     .post("/add-post", userProtected, userController.addPost)
+    .get("/posts", userController.getAllPosts)
 
 module.exports = router
